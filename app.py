@@ -17,8 +17,8 @@ api.add_resource(Application, '/application/<app_id>','/application')
 api.add_resource(Processor, '/processor', '/processor/<job_id>')
 api.add_resource(HealthCheck, '/check')
 
-logging.basicConfig(filename='app.log', filemode='w', format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename='app.log', filemode='a', format='%(asctime)s - %(levelname)s - %(message)s')
 logging.info("Application started")
 
 if __name__ == '__main__':
-    app.run()
+   app.run(host='0.0.0.0', port=5000, debug=True)
