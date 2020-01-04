@@ -1,0 +1,21 @@
+{
+    "name":"My test Application",
+    "check_interval": "15",
+    "request":{
+    	"method":"POST",
+        "endpoint":"http://myapplication.com/check",
+    	"headers":"",
+    	"body":""
+    },
+    "expected":{
+    	"code": "200",
+    	"headers":"",
+    	"body":""
+    },
+    "http_notification":{
+    	"method":"POST",
+    	"headers":"",
+    	"endpoint":"",
+    	"body":""
+    }
+}
