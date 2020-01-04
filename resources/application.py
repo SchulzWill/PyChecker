@@ -1,6 +1,8 @@
 from flask_restful import Resource
 from flask import request, json, jsonify
+from resources.processor import Processor, create_schedule_for_application
 import database
+import logging
 
 class ApplicationList(Resource):
     def get(self):
@@ -32,8 +34,9 @@ class Application(Resource):
             VALUES ('{0}',{1},'{2}','{3}', '{4}');
         """.format(name, check_interval, json.dumps(check_data), json.dumps(expected_json), json.dumps(http_notification_json))
 
-        id = database.insert(command)
-        return {'status':'success', 'id': id}, 200
+        app_id = database.insert(command)
+        job = create_schedule_for_application(app_id, check_interval)
+        return {'status':'success', 'job_id': job.id}, 200
     
     def put(self, app_id):
         json_data = request.get_json(force=True)
@@ -58,8 +61,8 @@ class Application(Resource):
             WHERE "id" = {5} ;
         """.format(name, check_interval, json.dumps(check_data), json.dumps(expected_json), json.dumps(http_notification_json), app_id)
 
-        id = database.update(command)
-        return {'status':'success', 'id': id}, 204
+        database.update(command)
+        return {'status':'success'}, 204
 
     def delete(self, app_id):
         command = "DELETE FROM application WHERE id ={0}".format(app_id)

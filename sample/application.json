@@ -1,9 +1,9 @@
 {
-    "name":"My test Application",
-    "check_interval": "15",
-    "request":{
-    	"method":"POST",
-        "endpoint":"http://myapplication.com/check",
+    "name":"PYCHECKER",
+    "check_interval": 20,
+    "check_data":{
+    	"method":"GET",
+        "endpoint":"http://localhost:5000/check",
     	"headers":"",
     	"body":""
     },
@@ -14,8 +14,8 @@
     },
     "http_notification":{
     	"method":"POST",
-    	"headers":"",
-    	"endpoint":"",
-    	"body":""
+    	"headers":{"Content-Type": "application/json","Authorization": "Bearer 12345678901234567890123456789"},
+    	"endpoint":"https://interview-notifier-svc.spotahome.net/api/v1/notification",
+    	"body":{"service": "${FAILING_SERVICE}","description": "${FAILING_SERVICE_DESCRIPTION}"}
     }
 }

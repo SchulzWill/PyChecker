@@ -1,5 +1,6 @@
 import os
 import sqlite3
+import logging
 
 
 DATABASE = 'data/pychecker.db'
