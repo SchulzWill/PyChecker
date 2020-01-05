@@ -40,7 +40,14 @@ Now, run the curl initial file
 ./load.sh
 ```
 
-All logs will be written on ./app.log
+All logs will be written on ./app.log .
+
+## Distributing
+The docker image of this project is available at [Docker Hub](https://hub.docker.com/r/schulzwill/pyhealthchecker) and can be pulled and executed independently:
+```bash
+ docker pull schulzwill/pyhealthchecker
+```
+
 
 ## Contributing
 Pull requests are welcome. 
