@@ -2,6 +2,43 @@
 
 PyChecker is a Python 3.7 RESTful health-checker API using Flask, SQLite, and APScheduler. 
 
+## Usage
+
+1) Clone this repository or its image;
+2) Follow the instructions below to have it running
+3) Send an HTTP Post to the http://server:port/application following the example:
+
+```
+POST /application HTTP/1.1
+Host: localhost:5000
+Content-Type: application/json
+
+{
+    "name":"PYCHECKER",
+    "check_interval": 20,
+    "check_data":{
+    	"method":"GET",
+        "endpoint":"http://localhost:5000/check",
+    	"headers":"",
+    	"body":""
+    },
+    "expected":{
+    	"code": "200",
+    	"headers":"",
+    	"body":""
+    },
+    "http_notification":{
+    	"method":"POST",
+    	"headers":{"Content-Type": "application/json","Authorization": "Bearer 12345678901234567890123456789"},
+    	"endpoint":"https://some.notification.server",
+    	"body":{"service": "${FAILING_SERVICE}","description": "${FAILING_SERVICE_DESCRIPTION}"}
+    }
+}
+```
+4) The service will create an application entry and a task to verify it every X seconds, defined in the "check_interval" variable.
+
+All other endpoints and its examples are covered on this read.me and the postman collection.
+
 ## Installation on Dev Environment
 
 Clone this repository and then run use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
@@ -13,6 +50,7 @@ After packages installation , run ./app.py
 ```bash
 python3 run app.py
 ```
+
 
 ## Running in Docker
 
