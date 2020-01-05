@@ -14,7 +14,7 @@ Host: localhost:5000
 Content-Type: application/json
 
 {
-    "name":"PYCHECKER",
+    "name":"My App",
     "check_interval": 20,
     "check_data":{
     	"method":"GET",
@@ -35,9 +35,11 @@ Content-Type: application/json
     }
 }
 ```
-4) The service will create an application entry and a task to verify it every X seconds, defined in the "check_interval" variable.
+This POST will create an application entry, named "My App" and a task to verify it every X seconds, defined in the "check_interval" variable.
+Our PyHealthCheck then will try to reach "My App" by the means defined in the "check_data" using the response of that call to compare with the "expected" one. If there are more differences between the actual response and the expected data OR the service fails to answer, a notification will be sent over HTTP using the data on the "http_notification".
 
-All other endpoints and its examples are covered on this read.me and the postman collection.
+
+All other endpoints and its examples are covered in this read.me and the postman collection.
 
 ## Installation on Dev Environment
 
