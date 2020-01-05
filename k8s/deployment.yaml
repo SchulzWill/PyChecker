@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pyhealthchecker
+  namespace: pyhealthchecker
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pyhealthchecker
+  template:
+    metadata:
+      labels:
+        app: pyhealthchecker
+    spec:
+      containers:
+      - name: pyhealthchecker
+        image: schulzwill/pyhealthchecker:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000

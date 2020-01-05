@@ -48,6 +48,32 @@ The docker image of this project is available at [Docker Hub](https://hub.docker
  docker pull schulzwill/pyhealthchecker
 ```
 
+## Running on K8s
+
+All files necessary are included in the k8s folder of this project.
+
+To deploy this solution in an already existing Kubernetes cluster:
+
+1) Clone this repository and go to its root folder
+2) Create the namespace:
+```bash
+kubectl create -f ./k8s/ns-pyhealthchecker.yaml 
+```
+3) Create the service for PyHealthChecker Application
+```bash
+kubectl create -f ./k8s/service-pyhealthchecker.yaml 
+```
+
+4) Deploy it:
+
+```bash
+kubectl create -f ./k8s/deployment.yaml
+``` 
+
+To check if it is up and running:
+```bash
+kubectl get deployment pyhealthchecker -n pyhealthchecker
+```
 
 ## Contributing
 Pull requests are welcome. 
