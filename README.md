@@ -43,7 +43,7 @@ All other endpoints and its examples are covered in this read.me and the postman
 
 ## Installation on Dev Environment
 
-Clone this repository and then run use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Clone this repository and then run use the package manager [pip](https://pip.pypa.io/en/stable/) to install it.
 
 ```bash
 pip install -r ./requirements.txt
