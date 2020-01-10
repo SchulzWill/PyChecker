@@ -30,7 +30,11 @@ def ping_application(app_id):
                 body = str(check_data['body']) if check_data['body'] is not None else ''
                 result = requests.request(check_data['method'], url=check_data['endpoint'], headers=headers, data = body)
             
-            compare_result(application['name'], application['expected'], result)
+            comparison_resulted = compare_result(application['name'], application['expected'], result)
+
+            if  comparison_resulted == False :
+                error_description = "Failed to compare result of check application {0}".format(application['name'])
+                notify_mantainer(application['name'], error_description, application['http_notification'])
         except Exception as e:
             error_description = "Failed to contact application {0}".format(application['name'])
             logging.error("{0}, will notify mantainer".format(error_description))
@@ -77,8 +81,9 @@ def compare_result(app_name, expectation, call_result):
         if error_count > right_count:
             error_description = "Failed to compare result of check application {0}".format(app_name)
             logging.error("{0}, will notify mantainer".format(error_description))
+            return False 
         
-        return
+        return True
 
 def notify_mantainer(app_name, error_description, channel):
     http_notification = eval(channel)
